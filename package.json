@@ -1,0 +1,24 @@
+{
+  "name": "readmegenerator",
+  "version": "1.0.0",
+  "description": "NODE program to generate a quality README.me",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theodorebutts/readmeGenerator.git"
+  },
+  "keywords": [
+    "NODE",
+    "README",
+    "JavaScript"
+  ],
+  "author": "THEODOREBUTTS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theodorebutts/readmeGenerator/issues"
+  },
+  "homepage": "https://github.com/theodorebutts/readmeGenerator#readme"
+}
