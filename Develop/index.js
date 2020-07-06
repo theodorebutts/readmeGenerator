@@ -2,6 +2,30 @@ const inquirer = require('inquirer')
 const fs = require('fs')
 const generateMarkdown = require('./utils/generateMarkdown')
 
+// Main function
+function init(questionsArr) {
+    console.log(`
+    
+    ===================
+    Let's Mage a README
+    ===================
+
+    `)
+    return inquirer.prompt(questionsArr)
+        .then(answers => {
+            return generateMarkdown(answers)
+        })
+        .then(markdown => {
+            const fileName = markdown
+                .toLowerCase()
+                .split('# ')[1]
+                .split('!')[0]
+                .replace(/\s+/g, '')
+            writeToFile(fileName, markdown)
+        }).catch(err => {
+            console.log(err)
+        })
+}
 
 // array of questions for user
 const questions = [{
@@ -16,6 +40,18 @@ const questions = [{
         }
     }
 },
+{
+    type: 'input',
+    name: 'description',
+    message: 'Please provide a description of your project (Required)',
+    validate: descriptionInput => {
+        if (descriptionInput) {
+            return true
+        } else {
+            console.log('Please provide a description')
+        }
+    }
+}
 {
     type: 'input',
     name: 'repo',
@@ -142,12 +178,12 @@ const questions = [{
 
 // function to write README file
 function writeToFile(fileName, data) {
+    fs.writeFile('../Output/README.mb', markdown, function(err) {
+        if (err) {
+            return console.log(err)
+        }
+    })
+    return console.log('README created. See Output to view the generated file.')
 }
-
-// function to initialize program
-function init() {
-
-}
-
 // function call to initialize program
 init(questions)
