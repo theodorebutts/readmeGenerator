@@ -1,13 +1,13 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
-const generateMarkdown = require('./utils/generateMarkdown')
+const generateMarkdown = require('./utils/generateMarkdown.js')
 
 // Main function
 function init(questionsArr) {
     console.log(`
     
     ===================
-    Let's Mage a README
+    Let's Make a README
     ===================
 
     `)
@@ -51,7 +51,7 @@ const questions = [{
             console.log('Please provide a description')
         }
     }
-}
+},
 {
     type: 'input',
     name: 'repo',
@@ -92,7 +92,7 @@ const questions = [{
     type: 'input',
     name: 'usage',
     message: 'Provide usage instrucitons and/or examples (Required)',
-    validate: usageInput=> {
+    validate: usageInput => {
         if (usageInput) {
             return true
         } else {
@@ -129,7 +129,7 @@ const questions = [{
     type: 'input',
     name: 'contribution',
     message: 'Please provide contributing guidelines (Required)',
-    validate: contributingInput=> {
+    validate: contributingInput => {
         if (contributingInput) {
             return true
         } else {
@@ -141,7 +141,7 @@ const questions = [{
     type: 'input',
     name: 'tests',
     message: 'Provide any testing instructions the user should know (Required)',
-    validate: testingInput=> {
+    validate: testingInput => {
         if (testingInput) {
             return true
         } else {
@@ -153,7 +153,7 @@ const questions = [{
     type: 'input',
     name: 'github',
     message: 'What is your GitHub username (Required)',
-    validate: githubInput=> {
+    validate: githubInput => {
         if (githubInput) {
             return true
         } else {
@@ -177,8 +177,8 @@ const questions = [{
 ]
 
 // function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFile('../Output/README.mb', markdown, function(err) {
+function writeToFile(fileName, markdown) {
+    fs.writeFile('../Output/README.mb', markdown, function (err) {
         if (err) {
             return console.log(err)
         }
